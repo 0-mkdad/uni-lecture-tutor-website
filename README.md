@@ -1,41 +1,25 @@
 # Uni Lecture Tutor
 
-The official website for Uni Lecture Tutor, an independent study aid for university lectures in ChatGPT. It introduces the learning workflow and publishes the project's support, privacy, terms and publisher information.
+**Study university lectures step by step in ChatGPT.**
 
-[Website](https://0-mkdad.github.io/uni-lecture-tutor-website/) · [Support](https://0-mkdad.github.io/uni-lecture-tutor-website/support.html) · [Privacy](https://0-mkdad.github.io/uni-lecture-tutor-website/privacy.html) · [Terms](https://0-mkdad.github.io/uni-lecture-tutor-website/terms.html)
+Uni Lecture Tutor helps you turn lecture PDFs, slides and notes into guided study sessions. Ask for explanations in the language you learn best in, while keeping study notes and key terms in the language of your course or exam.
 
-## How the product works
+## How a study session works
 
-Students share lecture materials in ChatGPT and work through explanations, source-grounded notes, practice questions and review checkpoints. The optional MCP tool calculates page coverage from a total page count and a list of page numbers. Read the [privacy notice](https://0-mkdad.github.io/uni-lecture-tutor-website/privacy.html) for details on lecture files, request metadata and service providers.
+1. **Share the material.** Attach a readable lecture file in ChatGPT and ask Uni Lecture Tutor to start. It can identify the structure of the lecture and the background knowledge you need.
+2. **Work through the lecture.** Follow the pages in order. Ask for a definition, a worked example, a formula derivation or an explanation of notation. Request page references so you can check the explanation against the source.
+3. **Practise independently.** Ask for one question at a time. Try it yourself, then request a hint or feedback. Use the topics you found difficult to plan spaced review.
+4. **Resume later.** Ask for a short checkpoint with the PDF page and section. Save it and paste it when you return. Reattach the material if the chat can no longer access it.
 
-## Website structure
+## Try asking
 
-| Path | Purpose |
-| --- | --- |
-| `index.html` | English homepage and default entry point |
-| `support.html`, `privacy.html`, `terms.html`, `legal.html` | English support and legal pages |
-| `de/`, `ar/` | German and Arabic equivalents, with right-to-left layout for Arabic |
-| `style.css`, `assets/` | Shared styles and local branding |
-| `sitemap.xml`, `robots.txt`, `.nojekyll` | Search discovery and static hosting |
+- “Explain page 9 in Arabic and write the study notes in German.”
+- “Walk me through this formula and explain what each symbol means.”
+- “Quiz me on this section, one question at a time. Give me a hint if I get stuck.”
+- “Make a checkpoint so I can resume from the next section.”
 
-## Preview locally
+## Page coverage
 
-From the repository root, start a static server:
+An optional tool counts the pages marked as covered and finds the first uncovered page. It receives the total number of pages and the covered page numbers. The result helps you track what you have worked through. Use practice questions to check what you can recall and apply.
 
-```sh
-python -m http.server 8000
-```
-
-Open [localhost:8000](http://localhost:8000). The site needs no build step, runtime dependencies or account to preview. It follows the browser's light or dark preference.
-
-## Maintenance and deployment
-
-- Update corresponding English, German and Arabic pages together. Keep privacy and legal statements consistent across languages.
-- Preserve the existing root URLs for the homepage, support, privacy and terms because the plugin metadata references them.
-- For new pages, update canonical and language-alternate URLs and the sitemap. Keep internal links relative to support the GitHub Pages repository subpath.
-- Check keyboard navigation, narrow and wide layouts, Arabic text direction, both color schemes and links before publishing.
-- GitHub Pages serves the root of `main`. After a change reaches `main`, check the Pages deployment and open the public URLs to confirm the update is live.
-
-## Contact
-
-Contact [Mohammad Almekdad](https://mkdad.de/) at [info@mkdad.de](mailto:info@mkdad.de). For support requests, include the version, relevant steps and a short redacted example.
+AI explanations and page references can contain errors. Check important details against the lecture material, especially formulas, citations and scanned pages.
