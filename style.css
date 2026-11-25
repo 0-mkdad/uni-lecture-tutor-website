@@ -85,3 +85,28 @@ details p { margin-block-start: .3rem; }
 
 .demo-panel h2 { font-size: 1.35rem; }
 .document address { font-style: normal; margin-block-end: .75rem; }
+
+.privacy-index {
+  display: block;
+  margin-block: 1.6rem 2.5rem;
+  padding: clamp(.9rem, 3vw, 1.4rem);
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  background: var(--surface);
+}
+.privacy-index p { margin: 0; font-weight: 750; }
+.privacy-index ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0 1rem;
+  list-style: none;
+  margin: .35rem 0 0;
+  padding: 0;
+}
+.document section[id] {
+  scroll-margin-block-start: 1rem;
+  border-block-start: 1px solid var(--line);
+  padding-block-start: 1.25rem;
+}
+.document p { max-inline-size: 70ch; }
+.document code { background: var(--wash); padding: .1em .28em; border-radius: .25rem; }
