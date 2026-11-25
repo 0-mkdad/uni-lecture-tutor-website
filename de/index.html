@@ -1,58 +1,287 @@
 <!doctype html>
 <html lang="de" dir="ltr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<meta name="description" content="Arbeite dein Hochschulmaterial in ChatGPT Seite für Seite durch. Lass es dir in deiner bevorzugten Sprache erklären und behalte deine Lernnotizen in der Kurssprache.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Uni Lecture Tutor">
-<meta property="og:description" content="Arbeite dein Hochschulmaterial in ChatGPT Seite für Seite durch. Lass es dir in deiner bevorzugten Sprache erklären und behalte deine Lernnotizen in der Kurssprache.">
-<meta property="og:url" content="https://0-mkdad.github.io/uni-lecture-tutor-website/de/">
-<meta property="og:image" content="https://0-mkdad.github.io/uni-lecture-tutor-website/assets/logo.png">
-<meta property="og:image:alt" content="Uni Lecture Tutor">
-<meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://0-mkdad.github.io/uni-lecture-tutor-website/de/">
-<link rel="alternate" hreflang="en" href="https://0-mkdad.github.io/uni-lecture-tutor-website/">
-<link rel="alternate" hreflang="de" href="https://0-mkdad.github.io/uni-lecture-tutor-website/de/">
-<link rel="alternate" hreflang="ar" href="https://0-mkdad.github.io/uni-lecture-tutor-website/ar/">
-<link rel="alternate" hreflang="x-default" href="https://0-mkdad.github.io/uni-lecture-tutor-website/">
-<link rel="icon" href="../assets/logo.png" type="image/png">
-<link rel="stylesheet" href="../style.css">
-<title>Uni Lecture Tutor</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Uni Lecture Tutor","url":"https://0-mkdad.github.io/uni-lecture-tutor-website/de/","inLanguage":"de","publisher":{"@type":"Person","name":"Mohammad Almekdad","url":"https://mkdad.de/"}}</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Uni Lecture Tutor | Vorlesungen mit ChatGPT durcharbeiten</title>
+  <meta name="description" content="Arbeite Vorlesungs-PDFs in ChatGPT Seite für Seite durch. Nutze Erklärungen, Übungsfragen, Hinweise und Wiederholungen in deiner bevorzugten Sprache.">
+  <link rel="canonical" href="https://0-mkdad.github.io/uni-lecture-tutor-website/de/">
+  <link rel="alternate" hreflang="en" href="https://0-mkdad.github.io/uni-lecture-tutor-website/">
+  <link rel="alternate" hreflang="de" href="https://0-mkdad.github.io/uni-lecture-tutor-website/de/">
+  <link rel="alternate" hreflang="ar" href="https://0-mkdad.github.io/uni-lecture-tutor-website/ar/">
+  <link rel="alternate" hreflang="x-default" href="https://0-mkdad.github.io/uni-lecture-tutor-website/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Uni Lecture Tutor">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ar_AR">
+  <meta property="og:title" content="Uni Lecture Tutor | Vorlesungen mit ChatGPT durcharbeiten">
+  <meta property="og:description" content="Arbeite Vorlesungs-PDFs in ChatGPT Seite für Seite durch. Nutze Erklärungen, Übungsfragen, Hinweise und Wiederholungen in deiner bevorzugten Sprache.">
+  <meta property="og:url" content="https://0-mkdad.github.io/uni-lecture-tutor-website/de/">
+  <meta property="og:image" content="https://0-mkdad.github.io/uni-lecture-tutor-website/assets/logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Logo von Uni Lecture Tutor">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Uni Lecture Tutor | Vorlesungen mit ChatGPT durcharbeiten">
+  <meta name="twitter:description" content="Arbeite Vorlesungs-PDFs in ChatGPT Seite für Seite durch. Nutze Erklärungen, Übungsfragen, Hinweise und Wiederholungen in deiner bevorzugten Sprache.">
+  <meta name="twitter:image" content="https://0-mkdad.github.io/uni-lecture-tutor-website/assets/logo.png">
+  <meta name="twitter:image:alt" content="Logo von Uni Lecture Tutor">
+  <link rel="icon" href="../assets/icon-72.png" type="image/png" sizes="72x72">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Uni Lecture Tutor",
+      "url": "https://0-mkdad.github.io/uni-lecture-tutor-website/de/",
+      "description": "Arbeite Vorlesungs-PDFs in ChatGPT Seite für Seite durch. Nutze Erklärungen, Übungsfragen, Hinweise und Wiederholungen in deiner bevorzugten Sprache.",
+      "inLanguage": "de",
+      "publisher": {
+        "@type": "Person",
+        "name": "Mohammad Almekdad",
+        "url": "https://mkdad.de/"
+      }
+    }
+  </script>
 </head>
 <body>
-<a class="skip" href="#main">Zum Inhalt springen</a>
-<header><div class="shell header">
-<a class="brand" href="./"><img width="36" height="36" src="../assets/logo.png" alt=""><bdi>Uni Lecture Tutor</bdi></a>
-<nav aria-label="Hauptnavigation"><a href="./" aria-current="page">Übersicht</a> <a href="support.html">Hilfe</a></nav>
-<nav class="languages" aria-label="Sprache"><a href="../" lang="en" hreflang="en">English</a> <a href="../de/" lang="de" hreflang="de" aria-current="page">Deutsch</a> <a href="../ar/" lang="ar" hreflang="ar">العربية</a></nav>
-</div></header>
-<main id="main" tabindex="-1" class="shell">
-<section class="hero"><div><p class="eyebrow">Tutor für Vorlesungs-PDFs in ChatGPT</p><h1>Mach aus deiner Vorlesung eine Lerneinheit.</h1><p class="lead">Arbeite dein Hochschulmaterial in ChatGPT Seite für Seite durch. Lass es dir in deiner bevorzugten Sprache erklären und behalte deine Lernnotizen in der Kurssprache.</p><div class="actions"><a class="button" href="#workflow">So funktioniert’s</a><a class="button alt" href="https://chatgpt.com/">ChatGPT öffnen</a></div></div>
- <figure class="demo"><figcaption>Beispiel einer Lerneinheit</figcaption><div class="demo-panel"><p class="eyebrow">Lineare Algebra · PDF-Seite 4</p><h2>Warum ist die Determinante wichtig?</h2><p>Bei einer 2 × 2-Matrix zeigt die Determinante, ob sich die Abbildung umkehren lässt.</p><p class="formula" dir="ltr">det A = ad − bc</p><p>Fachwortschatz <bdi>Determinante · determinant</bdi></p></div><div class="demo-panel"><h3>Jetzt selbst rechnen</h3><p>Welchen Wert hat die Determinante für a = 3, b = 1, c = 2 und d = 2?</p><details><summary>Lösung anzeigen</summary><p>3 × 2 − 1 × 2 = 4. Weil die Determinante ungleich null ist, ist die Matrix invertierbar.</p></details></div></figure></section>
- <section class="band" id="workflow"><h2>So funktioniert’s</h2><ol class="flow" role="list"><li><h3>Hochladen</h3><p>Hänge ein lesbares Vorlesungs-PDF an oder teile einen Auszug in ChatGPT.</p></li>
-<li><h3>Einordnen</h3><p>Erfasse den Aufbau der Vorlesung und das nötige Vorwissen.</p></li>
-<li><h3>Verstehen</h3><p>Geh Seiten, Formeln und Beispiele der Reihe nach durch.</p></li>
-<li><h3>Üben</h3><p>Löse eine Aufgabe selbst und lass dir Rückmeldung geben.</p></li>
-<li><h3>Wiederholen</h3><p>Plane Wiederholungen mit zeitlichem Abstand für offene Themen.</p></li>
-<li><h3>Fortsetzen</h3><p>Speichere deinen Lernstand als Kurznotiz und füge ihn später wieder ein.</p></li></ol></section>
- <section class="band"><h2>Lernwerkzeuge fürs Studium</h2><div class="features"><section><h3>Erklärungen in deinem Tempo</h3><p>Bitte um eine einfachere Erklärung, eine Herleitung oder ein Rechenbeispiel. Wähle die Erklärungssprache und behalte Notizen und Begriffe in der Kurssprache.</p></section>
-<section><h3>Notizen mit Quellenbezug</h3><p>Geh die Vorlage in ihrer Reihenfolge durch und frage nach Seitenverweisen. Halte Vorlesungsinhalte und KI-generierte Übungsfragen getrennt.</p></section>
-<section><h3>Abrufen und wiederholen</h3><p>Übe mit einzelnen Fragen, bitte um Hinweise und plane Wiederholungen. Halte fest, wo du aufgehört hast.</p></section>
-<section><h3>Seitenabdeckung</h3><p>Ein optionaler Rechner zählt die bearbeiteten Seiten ohne Duplikate und ermittelt die erste offene Seite. Die Abdeckung beschreibt den bearbeiteten Stoff.</p></section></div></section>
- <div class="band home-info"><section class="privacy"><h2>Wo deine Vorlesungsdaten verarbeitet werden</h2><p>Du lädst Vorlesungsmaterial in ChatGPT hoch, wo OpenAI es verarbeitet. Beim optionalen Rechner erhält Cloudflare numerische Seitenangaben und technische Daten der HTTP-Anfrage.</p><a href="privacy.html">Datenschutzhinweise lesen</a></section>
- <section><h2>Über den Entwickler</h2><p><strong><bdi>Mohammad Almekdad</bdi></strong><br>Selbstständiger Full-Stack- und Mobile-Entwickler.</p><a href="https://mkdad.de/">mkdad.de besuchen</a></section>
- </div>
- <section class="band faq"><h2>Häufige Fragen</h2><details><summary>Für welche Fächer eignet sich das?</summary><p>Der Ablauf eignet sich für lesbare Unterlagen aus vielen Studienfächern, etwa Mathematik, Informatik und Geisteswissenschaften.</p></details>
-<details><summary>Welche Sprachen kann ich verwenden?</summary><p>Wähle deine Erklärungssprache und bei Bedarf eine weitere Sprache für Notizen und Fachbegriffe. Beispiele sind Deutsch, Englisch und Arabisch.</p></details>
-<details><summary>Was geschieht mit meinen Dateien?</summary><p>Du lädst sie in ChatGPT hoch. Diese Website hat kein Upload-Formular. Der Rechner erhält die für die Berechnung benötigten Zahlen.</p></details>
-<details><summary>Speichert der Rechner meinen Fortschritt?</summary><p>Der Rechner liefert Seitenzahlen und die nächste offene Seite. Bewahre deinen Lernstand als Kurznotiz für spätere Sitzungen auf.</p></details>
-<details><summary>Wie verlässlich sind die Antworten?</summary><p>KI kann Scans, Formeln oder Seitenzahlen falsch lesen und Denkfehler machen. Prüfe wichtige Angaben anhand der Kursunterlagen.</p></details>
-<details><summary>Wie setze ich eine Vorlesung fort?</summary><p>Füge den gespeicherten Lernstand ein und nenne PDF-Seite und Überschrift. Hänge die Quelle erneut an, falls der Chat darauf nicht mehr zugreifen kann.</p></details>
-<details><summary>Wo finde ich Hilfe?</summary><p>Auf der Hilfeseite findest du Lösungen für Dateiprobleme, Hinweise zu Fehlermeldungen und die Kontaktdaten.</p></details></section>
+<a class="skip" href="#main" tabindex="0">Zum Inhalt springen</a>
+<header class="site-header">
+  <div class="shell header">
+    <a class="brand" href="./">
+      <img src="../assets/icon-72.png" width="72" height="72" alt="">
+      <bdi lang="en">Uni Lecture Tutor</bdi>
+    </a>
+    <button class="control" type="button" aria-label="Menü" aria-expanded="false" aria-controls="header-nav" data-menu-toggle hidden>
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
+    <div class="header-nav" id="header-nav">
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a href="#workflow">So funktioniert’s</a>
+        <a href="#faq">Häufige Fragen</a>
+        <a href="support.html">Hilfe</a>
+      </nav>
+      <nav class="languages" aria-label="Sprache">
+        <a href="../" lang="en" hreflang="en">English</a>
+        <a href="./" lang="de" hreflang="de" aria-current="page">Deutsch</a>
+        <a href="../ar/" lang="ar" hreflang="ar">العربية</a>
+      </nav>
+    </div>
+    <button class="control" type="button" aria-label="Dunkles Design für diese Seite" title="Dunkles Design für diese Seite" aria-pressed="false" data-theme-toggle hidden>
+      <span class="theme-symbol" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+  <div class="shell hero">
+    <div>
+      <p class="kicker">Studieren mit ChatGPT</p>
+      <h1>Vorlesungen verstehen. <em>Wissen prüfen.</em></h1>
+      <p class="lead">Uni Lecture Tutor führt dich Seite für Seite durch deine Vorlesungsunterlagen. Folge einem Lernplan zu deinem Material, frage bei Bedarf nach Hinweisen und übe in der Sprache, in der du am besten lernst.</p>
+      <div class="actions">
+        <a class="button" href="#sample">Beispiellektion ausprobieren <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="text-link" href="#workflow">So funktioniert’s</a>
+      </div>
+      <p class="availability">Die Prüfung für das ChatGPT App Directory läuft.</p>
+    </div>
+    <section class="sample" id="sample" tabindex="-1" aria-labelledby="sample-title" data-sample>
+      <header class="sample-head">
+        <h2 id="sample-title">Lineare Algebra</h2>
+        <p class="sample-caption">Beispiellektion</p>
+      </header>
+      <div class="sample-body">
+        <div class="sample-nav" data-tablist="Abschnitte der Beispiellektion">
+          <a id="tab-plan" href="#demo-plan"><span class="tab-index" aria-hidden="true">01</span>Plan</a>
+          <a id="tab-learn" href="#demo-learn" data-initial><span class="tab-index" aria-hidden="true">02</span>Lernen</a>
+          <a id="tab-practice" href="#demo-practice"><span class="tab-index" aria-hidden="true">03</span>Üben</a>
+          <a id="tab-review" href="#demo-review"><span class="tab-index" aria-hidden="true">04</span>Rückblick</a>
+        </div>
+        <div class="sample-panels">
+          <section class="sample-panel" id="demo-plan">
+            <p class="sample-meta">Beispiel-PDF · 12 Seiten</p>
+            <h3>Die Vorlesung einordnen</h3>
+            <p>Die Beispielvorlesung führt von der Matrixschreibweise über Determinanten zu inversen Matrizen.</p>
+            <ol>
+              <li>Seiten 1–3 · Einträge und Schreibweise von Matrizen lesen.</li>
+              <li>Seiten 4–7 · Die Determinante einer 2 × 2-Matrix berechnen.</li>
+              <li>Seiten 8–12 · Den Zusammenhang mit inversen Matrizen verstehen.</li>
+            </ol>
+          </section>
+          <section class="sample-panel" id="demo-learn">
+            <p class="sample-meta">Beispiel-PDF · Seite 4</p>
+            <h3>Was sagt die Determinante aus?</h3>
+            <p>Multipliziere bei einer 2 × 2-Matrix die Einträge auf jeder Diagonalen. Ziehe das zweite Produkt vom ersten ab.</p>
+            <span class="formula" dir="ltr">det A = ad − bc</span>
+            <p>Ist das Ergebnis ungleich null, ist die Matrix invertierbar.</p>
+            <dl class="sample-languages">
+              <div><dt>Erklärung</dt><dd>Deutsch</dd></div>
+              <div><dt>Kursbegriff</dt><dd><bdi lang="en">determinant</bdi> (Englisch)</dd></div>
+            </dl>
+            <a class="text-link sample-next" href="#demo-practice" data-sample-next>Zur Übungsfrage <span class="arrow" aria-hidden="true">→</span></a>
+          </section>
+          <section class="sample-panel" id="demo-practice">
+            <p class="sample-meta">Generierte Übung · Zu Seite 4</p>
+            <h3>Die Determinante berechnen</h3>
+            <p>Wie groß ist die Determinante für <bdi>a = 3, b = 1, c = 2, d = 2</bdi>?</p>
+            <details>
+              <summary>Hinweis anzeigen</summary>
+              <p>Beginne mit der Hauptdiagonalen, <bdi>3 × 2</bdi>. Ziehe anschließend das Produkt der anderen Diagonalen ab.</p>
+            </details>
+            <form class="quiz" data-quiz hidden data-correct-answer="4" data-correct="Richtig. Das Produkt auf der Hauptdiagonalen ist 6, das andere Produkt ist 2. Die Determinante ist 4, also ist die Matrix invertierbar." data-retry="Versuche es noch einmal. Ziehe die Diagonalprodukte in der Reihenfolge der Formel voneinander ab.">
+              <fieldset>
+                <legend>Wähle eine Antwort</legend>
+                <div class="quiz-options">
+                  <label><input type="radio" name="answer" value="2" required> <bdi>2</bdi></label>
+                  <label><input type="radio" name="answer" value="4"> <bdi>4</bdi></label>
+                  <label><input type="radio" name="answer" value="8"> <bdi>8</bdi></label>
+                </div>
+              </fieldset>
+              <button class="button" type="submit">Antwort prüfen</button>
+              <p class="quiz-feedback" role="status"></p>
+            </form>
+            <details data-quiz-fallback>
+              <summary>Lösung anzeigen</summary>
+              <p>Richtig. Das Produkt auf der Hauptdiagonalen ist 6, das andere Produkt ist 2. Die Determinante ist 4, also ist die Matrix invertierbar.</p>
+            </details>
+          </section>
+          <section class="sample-panel" id="demo-review">
+            <p class="sample-meta">Beispiel für einen Lernstand</p>
+            <h3>Die nächste Wiederholung planen</h3>
+            <p>Nächstes Übungsziel: Erkläre, wie du die Invertierbarkeit einer Matrix prüfen kannst, ohne ihre Inverse zu berechnen.</p>
+            <div class="coverage">
+              <p id="coverage-label">4 von 12 Seiten bearbeitet</p>
+              <progress aria-labelledby="coverage-label" value="4" max="12"></progress>
+            </div>
+            <p>Weiter auf Seite 5. In ChatGPT kannst du um eine kurze Zusammenfassung deines Lernstands zum Kopieren bitten.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section workflow" id="workflow" tabindex="-1" aria-labelledby="workflow-title">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <h2 class="section-title" id="workflow-title">So läuft eine Lerneinheit ab</h2>
+        <p>Beginne mit deinen Kursunterlagen. Arbeite sie der Reihe nach durch und nutze die Rückmeldungen, um gezielt zu wiederholen.</p>
+      </div>
+      <ol class="steps" role="list">
+        <li>
+          <span class="step-index" aria-hidden="true">01</span>
+          <div><h3>Vorlesungsunterlagen teilen</h3><p>Hänge ein lesbares Vorlesungs-PDF in ChatGPT an oder füge einen Auszug ein, den du teilen darfst.</p></div>
+        </li>
+        <li>
+          <span class="step-index" aria-hidden="true">02</span>
+          <div><h3>Lernplan erhalten</h3><p>Sieh dir den Aufbau der Vorlesung an, erkenne die Reihenfolge der Konzepte und kläre das nötige Vorwissen.</p></div>
+        </li>
+        <li>
+          <span class="step-index" aria-hidden="true">03</span>
+          <div><h3>Das Material durcharbeiten</h3><p>Folge der Vorlesung der Reihe nach. Bitte um eine Definition, Herleitung oder ein Beispiel und prüfe den Seitenverweis.</p></div>
+        </li>
+        <li>
+          <span class="step-index" aria-hidden="true">04</span>
+          <div><h3>Eine Aufgabe lösen</h3><p>Bearbeite jeweils eine Aufgabe. Wenn du nicht weiterkommst, bitte um einen Hinweis und lass dir Rückmeldung zur Antwort geben.</p></div>
+        </li>
+        <li>
+          <span class="step-index" aria-hidden="true">05</span>
+          <div><h3>Wiederholen und später fortsetzen</h3><p>Entscheide anhand der Rückmeldung, was du wiederholen willst. Speichere die nächste Seite und das nächste Thema als kurze Notiz.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section method" aria-labelledby="method-title">
+    <div class="shell editorial-grid">
+      <div class="section-intro">
+        <h2 class="section-title" id="method-title">Wie der Tutor dich beim Lernen unterstützt</h2>
+        <p>Du erarbeitest dir einen Begriff und übst, ihn aus dem Gedächtnis zu erklären und selbstständig anzuwenden.</p>
+      </div>
+      <div class="principles">
+        <div><h3>Schritt für Schritt vorgehen</h3><p>Beginne mit den Grundlagen und arbeite dich in deinem Tempo zu Formeln, Beispielen und Anwendungen vor.</p></div>
+        <div><h3>An der Quelle bleiben</h3><p>Frage nach Seitenverweisen und unterscheide Notizen zur Vorlesung von generierten Beispielen und Übungen.</p></div>
+        <div><h3>Erst selbst abrufen</h3><p>Versuche, eine Idee zu erklären oder eine Aufgabe aus dem Gedächtnis zu lösen. Ein Hinweis hilft dir, selbst einen Schritt weiterzugehen.</p></div>
+        <div><h3>Gezielt wiederholen</h3><p>Greife schwierige Themen später noch einmal auf. Halte Notizen und Fachbegriffe in der Sprache fest, die du für den Kurs oder die Prüfung brauchst.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell section trust">
+    <section aria-labelledby="trust-title">
+      <h2 class="section-title" id="trust-title">Wo Vorlesungsdaten verarbeitet werden</h2>
+      <p>OpenAI verarbeitet die Unterlagen und Eingaben, die du in ChatGPT teilst. Ruft ChatGPT den optionalen Rechner für die Seitenabdeckung auf, erhält Cloudflare numerische Seitenangaben und technische Anfragedaten.</p>
+      <a class="text-link" href="privacy.html">Datenschutzhinweise lesen <span class="arrow" aria-hidden="true">→</span></a>
+    </section>
+    <section class="publisher" aria-labelledby="publisher-title">
+      <h2 class="section-title" id="publisher-title">Über den Anbieter</h2>
+      <p><strong><bdi>Mohammad Almekdad</bdi></strong> ist selbstständiger Full-Stack- und Mobile-Entwickler in Deutschland.</p>
+      <div class="trust-links">
+        <a class="text-link" href="https://mkdad.de/">Website des Entwicklers <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="text-link" href="support.html">Hilfe</a>
+      </div>
+    </section>
+  </div>
+
+  <section class="shell section faq" id="faq" tabindex="-1" aria-labelledby="faq-title">
+    <div class="editorial-grid">
+      <div class="section-intro">
+        <h2 class="section-title" id="faq-title">Häufige Fragen</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Kann ich Uni Lecture Tutor schon öffnen?</summary>
+          <p>Die Prüfung für das ChatGPT App Directory läuft. Auf dieser Website kannst du die Beispiellektion ausprobieren. Der Tutor ist für ChatGPT ausgelegt, wo der Zugang und die Nutzungslimits von Tarif, Region und Arbeitsbereich abhängen.</p>
+        </details>
+        <details>
+          <summary>Welche Unterlagen kann ich verwenden?</summary>
+          <p>Beginne mit einem lesbaren Vorlesungs-PDF, etwa Folien oder Notizen im PDF-Format. Du kannst auch einen Auszug einfügen. Scans, komplexe Formeln und abweichende Foliennummern können die Auswertung erschweren.</p>
+        </details>
+        <details>
+          <summary>Welche Sprachen kann ich verwenden?</summary>
+          <p>Bitte um Erklärungen auf Deutsch, Englisch, Arabisch oder in einer anderen Sprache. Für Notizen und Fachbegriffe kannst du eine andere Sprache wählen, etwa Arabisch für die Erklärung und Deutsch für die Fachbegriffe.</p>
+        </details>
+        <details>
+          <summary>Wie prüfe ich mein Verständnis?</summary>
+          <p>Bitte jeweils um eine Übungsfrage und versuche, sie selbst zu beantworten. Frage nach einem Hinweis oder nach Rückmeldung. Die Seitenabdeckung zeigt den bearbeiteten Stoff. Deine Antworten zeigen, was du abrufen und anwenden kannst.</p>
+        </details>
+        <details>
+          <summary>Kann ich in einem anderen Chat weiterlernen?</summary>
+          <p>Speichere eine kurze Notiz zu deinem Lernstand und füge sie ein, wenn du weitermachst. Nenne Vorlesung, Seite und Abschnitt. Hänge die Quelle bei Bedarf erneut an.</p>
+        </details>
+        <details>
+          <summary>Wer hat Zugriff auf meine Unterlagen?</summary>
+          <p>Dateien werden in ChatGPT hochgeladen. Für die Verarbeitung durch OpenAI gelten die jeweils gültigen Richtlinien sowie deine Konto- oder Arbeitsbereicheinstellungen. Die <a href="privacy.html">Datenschutzhinweise</a> erklären die Datenverarbeitung der Website und des optionalen Rechners.</p>
+        </details>
+        <details>
+          <summary>Wie zuverlässig sind die Erklärungen?</summary>
+          <p>KI kann Scans, Formeln und Seitenzahlen falsch lesen oder Denkfehler machen. Prüfe wichtige Angaben anhand deiner Kursunterlagen und beachte die KI-Regeln deiner Hochschule.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="shell footer"><p>Unabhängiges Bildungsprojekt für ChatGPT.</p><nav aria-label="Weitere Links"><a href="support.html">Hilfe</a> <a href="privacy.html">Datenschutz</a> <a href="terms.html">Nutzungsbedingungen</a> <a href="legal.html">Impressum</a> <a href="https://mkdad.de/"><bdi>mkdad.de</bdi></a></nav></div></footer>
+<footer class="site-footer">
+  <div class="shell footer">
+    <div>
+      <a class="brand" href="./">
+        <img src="../assets/icon-72.png" width="72" height="72" alt="">
+        <bdi lang="en">Uni Lecture Tutor</bdi>
+      </a>
+      <p class="footer-note">Ein unabhängiges Bildungsprojekt von <bdi>Mohammad Almekdad</bdi>.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Fußnavigation">
+      <a href="support.html">Hilfe</a>
+      <a href="privacy.html">Datenschutz</a>
+      <a href="terms.html">Nutzungsbedingungen</a>
+      <a href="legal.html">Impressum</a>
+      <a href="https://github.com/0-mkdad/uni-lecture-tutor-website/">GitHub</a>
+      <a href="https://mkdad.de/"><bdi>mkdad.de</bdi></a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>
