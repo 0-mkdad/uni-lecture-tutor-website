@@ -19,7 +19,7 @@ themeButton.hidden = false;
 
 const menuButton = document.querySelector("[data-menu-toggle]");
 const menu = menuButton && document.getElementById(menuButton.getAttribute("aria-controls"));
-const mobile = matchMedia("(max-width: 58rem)");
+const mobile = matchMedia("(max-width: 70rem)");
 
 function setMenuOpen(open) {
   menu.hidden = mobile.matches && !open;
@@ -59,7 +59,6 @@ if (sample) {
   const tablist = sample.querySelector("[data-tablist]");
   const tabs = [...tablist.querySelectorAll("a")];
   const panels = tabs.map((tab) => document.getElementById(tab.hash.slice(1)));
-  const compactTabs = matchMedia("(max-width: 34rem)");
 
   function selectTab(index, focus = false) {
     if (index < 0 || !tabs[index] || !panels[index]) return;
@@ -72,9 +71,6 @@ if (sample) {
     if (focus && tabs[index]) tabs[index].focus();
   }
 
-  function syncOrientation() {
-    tablist.setAttribute("aria-orientation", compactTabs.matches ? "horizontal" : "vertical");
-  }
 
   function syncHash() {
     const index = tabs.findIndex((tab) => tab.hash === location.hash);
@@ -83,6 +79,7 @@ if (sample) {
   }
 
   tablist.setAttribute("role", "tablist");
+  tablist.setAttribute("aria-orientation", "horizontal");
   tablist.setAttribute("aria-label", tablist.dataset.tablist);
   tabs.forEach((tab, index) => {
     const panel = panels[index];
@@ -101,8 +98,8 @@ if (sample) {
     if (index < 0) return;
 
     const rtl = root.dir === "rtl";
-    const previous = compactTabs.matches ? (rtl ? "ArrowRight" : "ArrowLeft") : "ArrowUp";
-    const next = compactTabs.matches ? (rtl ? "ArrowLeft" : "ArrowRight") : "ArrowDown";
+    const previous = rtl ? "ArrowRight" : "ArrowLeft";
+    const next = rtl ? "ArrowLeft" : "ArrowRight";
     let destination;
     switch (event.key) {
       case "Home": destination = 0; break;
@@ -115,13 +112,13 @@ if (sample) {
     event.preventDefault();
     selectTab(destination, true);
   });
-  sample.querySelector("[data-sample-next]")?.addEventListener("click", (event) => {
-    event.preventDefault();
-    selectTab(tabs.findIndex((tab) => tab.hash === event.currentTarget.hash), true);
+  sample.querySelectorAll("[data-sample-next]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      selectTab(tabs.findIndex((tab) => tab.hash === link.hash), true);
+    });
   });
-  compactTabs.addEventListener("change", syncOrientation);
   window.addEventListener("hashchange", syncHash);
-  syncOrientation();
   if (syncHash() < 0) selectTab(tabs.findIndex((tab) => tab.hasAttribute("data-initial")));
 
   const quiz = sample.querySelector("[data-quiz]");

@@ -7,6 +7,8 @@ const ARTIFACTS = process.env.QA_ARTIFACTS || "qa-artifacts";
 const langs = ["en", "de", "ar"];
 const pages = ["", "getting-started.html", "learning-science.html", "privacy.html", "terms.html", "support.html", "legal.html"];
 const profiles = [
+  {name: "small-desktop-light", viewport: {width: 1152, height: 900}, colorScheme: "light", homeOnly: true},
+  {name: "landscape-dark", viewport: {width: 1024, height: 768}, colorScheme: "dark", homeOnly: true},
   {name: "desktop-light", viewport: {width: 1440, height: 900}, colorScheme: "light"},
   {name: "mobile-dark", viewport: {width: 390, height: 844}, colorScheme: "dark"},
   {name: "small-mobile-light", viewport: {width: 320, height: 720}, colorScheme: "light", homeOnly: true},
@@ -50,11 +52,38 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
             if (item === "") {
               assert.equal(await page.locator(".discipline-icon").count(), 24);
               assert.equal(await page.locator(".demo-extras li").count(), 4);
+              const geometry = await page.evaluate(() => {
+                const rect = el => el.getBoundingClientRect();
+                const css = el => getComputedStyle(el);
+                const sample = document.querySelector("#sample");
+                const nav = document.querySelector(".sample-nav");
+                const tabs = [...nav.querySelectorAll("a")];
+                const panel = document.querySelector(".sample-panel:not([hidden])");
+                const header = document.querySelector(".sample-head");
+                const extras = document.querySelector(".demo-extras");
+                const sections = [...document.querySelectorAll("main .section")];
+                return {
+                  orientation: nav.getAttribute("aria-orientation"),
+                  tabRows: new Set(tabs.map(t => Math.round(rect(t).top))).size,
+                  tabWidths: tabs.map(t => rect(t).width),
+                  padding: [header, panel, extras].map(el => css(el).paddingInlineStart),
+                  sectionPadding: sections.map(el => css(el).paddingBlockStart),
+                  panelMinHeight: css(panel).minBlockSize,
+                  contained: [header, nav, panel, extras].every(el => rect(el).left >= rect(sample).left - 1 && rect(el).right <= rect(sample).right + 1)
+                };
+              });
+              assert.equal(geometry.orientation, "horizontal");
+              assert.equal(geometry.tabRows, 1);
+              assert.ok(Math.max(...geometry.tabWidths) - Math.min(...geometry.tabWidths) < 1, "uneven demo tab widths");
+              assert.equal(new Set(geometry.padding).size, 1, "inconsistent demo inset");
+              assert.equal(new Set(geometry.sectionPadding).size, 1, "inconsistent section spacing");
+              assert.ok(geometry.contained, "demo content overflow");
+              assert.ok(["0px","auto"].includes(geometry.panelMinHeight), "fixed minimum panel height");
               const theme = page.locator("[data-theme-toggle]");
               await theme.click();
               assert.equal(await theme.getAttribute("aria-pressed"), String(profile.colorScheme !== "dark"));
               await theme.click();
-              if (profile.viewport.width <= 928) {
+              if (profile.viewport.width <= 1120) {
                 const menu = page.locator("[data-menu-toggle]");
                 await menu.click();
                 assert.equal(await menu.getAttribute("aria-expanded"), "true");
@@ -64,15 +93,19 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
               }
               await page.locator("#tab-plan").click();
               assert.equal(await page.locator("#tab-plan").getAttribute("aria-selected"), "true");
-              await page.keyboard.press(profile.viewport.width <= 544 ? (lang === "ar" ? "ArrowLeft" : "ArrowRight") : "ArrowDown");
+              await page.keyboard.press(lang === "ar" ? "ArrowLeft" : "ArrowRight");
               assert.equal(await page.locator("#tab-learn").getAttribute("aria-selected"), "true");
-              await page.locator("[data-sample-next]").click();
+              await page.locator("#demo-learn [data-sample-next]").click();
               assert.equal(await page.locator("#tab-practice").getAttribute("aria-selected"), "true");
               for (const [value, attr] of [["2", "data-retry"], ["4", "data-correct"]]) {
                 await page.locator("input[value='" + value + "']").check();
                 await page.locator("[data-quiz] button[type='submit']").click();
                 assert.equal(await page.locator(".quiz-feedback").textContent(), await page.locator("[data-quiz]").getAttribute(attr));
               }
+              await page.locator("#demo-practice [data-sample-next]").click();
+              assert.equal(await page.locator("#tab-review").getAttribute("aria-selected"), "true");
+              await page.locator("#demo-review [data-sample-next]").click();
+              assert.equal(await page.locator("#tab-plan").getAttribute("aria-selected"), "true");
               await page.locator("#tab-learn").click();
               await page.evaluate(() => window.scrollTo(0, 0));
               await page.screenshot({path: path.join(ARTIFACTS, lang + "-" + profile.name + ".png"), fullPage: true, animations: "disabled"});
