@@ -1,0 +1,84 @@
+name: Website quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    name: HTML, metadata, links and privacy checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - run: python3 .github/qa/quality.py
+      - run: node --check site.js
+
+  browser:
+    name: Lint, responsive browser and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: static
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Install QA-only dependencies
+        run: npm install --prefix .github/qa --ignore-scripts --no-audit --no-fund --package-lock=false
+      - name: Lint public files
+        run: |
+          .github/qa/node_modules/.bin/html-validate --config .github/qa/htmlvalidate.json *.html de/*.html ar/*.html
+          .github/qa/node_modules/.bin/stylelint --config .github/qa/stylelint.json style.css
+          .github/qa/node_modules/.bin/eslint --config .github/qa/eslint.config.mjs site.js
+      - name: Install Chromium
+        run: .github/qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Start local static server
+        run: |
+          python3 .github/qa/serve.py > "$RUNNER_TEMP/ult-server.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4173/uni-lecture-tutor-website/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/ult-server.log"
+          exit 1
+      - name: Browser, accessibility and privacy tests
+        run: node .github/qa/browser.cjs
+      - name: Lighthouse reports
+        if: always()
+        run: |
+          export CHROME_PATH="$(command -v google-chrome || command -v chromium || true)"
+          .github/qa/node_modules/.bin/lhci autorun --config=.github/qa/lighthouserc.json
+      - name: Upload screenshots and local reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: website-quality-reports
+          path: qa-artifacts/
+          if-no-files-found: warn
+          retention-days: 7
+
+  external-links:
+    name: External public links (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - run: python3 .github/qa/external_links.py

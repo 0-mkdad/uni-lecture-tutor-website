@@ -1,0 +1,13 @@
+{
+  "name": "uni-lecture-tutor-website-qa",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "playwright": "1.65.1",
+    "axe-core": "4.10.3",
+    "html-validate": "10.0.0",
+    "stylelint": "16.23.1",
+    "eslint": "9.39.1",
+    "@lhci/cli": "0.15.1"
+  }
+}

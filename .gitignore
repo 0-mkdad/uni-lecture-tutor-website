@@ -1,0 +1,16 @@
+# Local development artefacts
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.cache/
+playwright-report/
+test-results/
+.lighthouseci/
+coverage/
+*.log

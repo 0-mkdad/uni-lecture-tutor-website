@@ -7,16 +7,18 @@ function updateThemeButton() {
   themeButton.setAttribute("aria-pressed", String(dark));
 }
 
-themeButton.addEventListener("click", () => {
+if (themeButton) {
+  themeButton.addEventListener("click", () => {
   root.dataset.theme = themeButton.getAttribute("aria-pressed") === "true" ? "light" : "dark";
   updateThemeButton();
 });
 systemTheme.addEventListener("change", updateThemeButton);
 updateThemeButton();
 themeButton.hidden = false;
+}
 
 const menuButton = document.querySelector("[data-menu-toggle]");
-const menu = document.getElementById(menuButton.getAttribute("aria-controls"));
+const menu = menuButton && document.getElementById(menuButton.getAttribute("aria-controls"));
 const mobile = matchMedia("(max-width: 58rem)");
 
 function setMenuOpen(open) {
@@ -31,22 +33,25 @@ function syncMenu() {
   if (mobile.matches && focusInMenu) menuButton.focus();
 }
 
+if (menuButton && menu) {
 menuButton.addEventListener("click", () => setMenuOpen(menu.hidden));
 menu.addEventListener("click", (event) => {
   const link = event.target.closest("a[href]");
   if (!mobile.matches || !link || link.pathname !== location.pathname || !link.hash) return;
-  const destination = document.querySelector(link.hash);
+  let destination;
+  try { destination = document.getElementById(decodeURIComponent(link.hash.slice(1))); } catch { return; }
   if (!destination) return;
   setMenuOpen(false);
   destination.focus({ preventScroll: true });
 });
-document.querySelector(".site-header").addEventListener("keydown", (event) => {
+document.querySelector(".site-header")?.addEventListener("keydown", (event) => {
   if (event.key !== "Escape" || menuButton.getAttribute("aria-expanded") !== "true") return;
   setMenuOpen(false);
   menuButton.focus();
 });
 mobile.addEventListener("change", syncMenu);
 syncMenu();
+}
 
 const sample = document.querySelector("[data-sample]");
 
@@ -57,13 +62,14 @@ if (sample) {
   const compactTabs = matchMedia("(max-width: 34rem)");
 
   function selectTab(index, focus = false) {
+    if (index < 0 || !tabs[index] || !panels[index]) return;
     tabs.forEach((tab, position) => {
       const selected = index === position;
       tab.setAttribute("aria-selected", String(selected));
       tab.tabIndex = selected ? 0 : -1;
       panels[position].hidden = !selected;
     });
-    if (focus) tabs[index].focus();
+    if (focus && tabs[index]) tabs[index].focus();
   }
 
   function syncOrientation() {
@@ -109,7 +115,7 @@ if (sample) {
     event.preventDefault();
     selectTab(destination, true);
   });
-  sample.querySelector("[data-sample-next]").addEventListener("click", (event) => {
+  sample.querySelector("[data-sample-next]")?.addEventListener("click", (event) => {
     event.preventDefault();
     selectTab(tabs.findIndex((tab) => tab.hash === event.currentTarget.hash), true);
   });
@@ -119,7 +125,8 @@ if (sample) {
   if (syncHash() < 0) selectTab(tabs.findIndex((tab) => tab.hasAttribute("data-initial")));
 
   const quiz = sample.querySelector("[data-quiz]");
-  const feedback = quiz.querySelector("[role='status']");
+  const feedback = quiz?.querySelector("[role='status']");
+  if (quiz && feedback) {
   quiz.addEventListener("submit", (event) => {
     event.preventDefault();
     const correct = new FormData(quiz).get("answer") === quiz.dataset.correctAnswer;
@@ -127,5 +134,37 @@ if (sample) {
   });
   quiz.addEventListener("change", () => { feedback.textContent = ""; });
   quiz.hidden = false;
-  sample.querySelector("[data-quiz-fallback]").hidden = true;
+  const fallback = sample.querySelector("[data-quiz-fallback]");
+  if (fallback) fallback.hidden = true;
+  }
+}
+
+// Optional clipboard convenience. No storage, external requests or telemetry.
+const promptLabels = {
+  en: { copy: "Copy prompt", done: "Copied.", failed: "Select and copy the text manually." },
+  de: { copy: "Anfrage kopieren", done: "Kopiert.", failed: "Text bitte manuell markieren und kopieren." },
+  ar: { copy: "نسخ الطلب", done: "تم النسخ.", failed: "حدّد النص وانسخه يدوياً." }
+};
+const labels = promptLabels[root.lang] || promptLabels.en;
+if (navigator.clipboard && window.isSecureContext) {
+  document.querySelectorAll(".prompt-list blockquote").forEach((quote) => {
+    const prompt = quote.querySelector("p");
+    if (!prompt) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "copy-prompt";
+    button.textContent = labels.copy;
+    const status = document.createElement("p");
+    status.className = "copy-status";
+    status.setAttribute("role", "status");
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(prompt.textContent.trim());
+        status.textContent = labels.done;
+      } catch {
+        status.textContent = labels.failed;
+      }
+    });
+    quote.append(button, status);
+  });
 }

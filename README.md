@@ -21,17 +21,18 @@ Uni Lecture Tutor (public product version **1.0.0**) is an independent, multilin
 
 ## Learning science
 
-Retrieval practice, Active recall, Spaced repetition, Successive relearning, Worked examples, Scaffolding and fading, Self-explanation, Interleaving, Cognitive load management, Knowledge transfer, Discipline-specific pedagogy inform the design. These publications inform individual learning strategies, not the demonstrated effectiveness of Uni Lecture Tutor itself. Results depend on task, context and learner; no academic outcome is guaranteed.
+Retrieval practice, active recall, spaced repetition, successive relearning, worked examples, scaffolding and fading, self-explanation, interleaving, cognitive load management, knowledge transfer and discipline-specific pedagogy inform the design. [Explore the learning science and selected research](https://0-mkdad.github.io/uni-lecture-tutor-website/learning-science.html). Research on teaching methods is not direct validation of this product; academic outcomes are not guaranteed.
 
 ## Free use and privacy
 
 The publisher charges no separate tutor fee and requires no additional account. Access remains subject to ChatGPT availability, plan requirements, platform terms, region, workspace settings and usage limits. OpenAI may charge for its services. Public directory availability should be checked in ChatGPT.
 
-Lecture files and conversations are processed in ChatGPT under applicable OpenAI policies and your settings. The publisher operates no separate student-progress database. The optional coverage calculator is designed to receive only numerical page information (total_pages and covered_pages), not lecture text, filenames, account identifiers, assessment answers or checkpoints. GitHub and Cloudflare may process technical connection data needed to deliver and secure their services. Coverage is not mastery. Verify important material and follow institutional rules.
+Lecture files and conversations are processed in ChatGPT under applicable OpenAI policies and your settings. The publisher operates no separate student-progress database. The optional coverage calculator is designed to receive only numerical page information (total_pages and covered_pages), not lecture text, filenames, account identifiers, assessment answers or checkpoints. GitHub and Cloudflare may process technical connection data needed to deliver and secure their services. Coverage is not mastery. The publisher does not sell student data; the website code has no advertising trackers. Verify important material and follow institutional rules. This is an independent project, not an official OpenAI or university product.
 
 ## Official website and support
 
-- [Official website](https://0-mkdad.github.io/uni-lecture-tutor-website/)
+- [Official website and interactive example](https://0-mkdad.github.io/uni-lecture-tutor-website/)
+- [Getting started](https://0-mkdad.github.io/uni-lecture-tutor-website/getting-started.html) · [Learning science](https://0-mkdad.github.io/uni-lecture-tutor-website/learning-science.html)
 - [Deutsch](https://0-mkdad.github.io/uni-lecture-tutor-website/de/) · [العربية](https://0-mkdad.github.io/uni-lecture-tutor-website/ar/)
 - [Support](https://0-mkdad.github.io/uni-lecture-tutor-website/support.html) · [Email](mailto:info@mkdad.de)
 - [Privacy](https://0-mkdad.github.io/uni-lecture-tutor-website/privacy.html) · [Terms](https://0-mkdad.github.io/uni-lecture-tutor-website/terms.html) · [Impressum](https://0-mkdad.github.io/uni-lecture-tutor-website/legal.html)
