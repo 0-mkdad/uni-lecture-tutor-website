@@ -1,25 +1,39 @@
 # Uni Lecture Tutor
 
-Uni Lecture Tutor is an independent study aid designed for ChatGPT. It helps university students turn a lecture PDF into a guided session, work through the material page by page, and practise recalling and applying what they have learned.
+**Your university. Your language. Your personal AI tutor.**
 
-The tutor can explain a lecture in your preferred language while keeping the study notes and vocabulary in the language of your course or exam. For example, you can ask for an explanation in Arabic and keep your notes in German.
+Uni Lecture Tutor (public product version **1.0.0**) is an independent, multilingual university learning assistant designed for ChatGPT. Turn readable lectures into structured study sessions, build understanding, practise independently and prepare for exams.
 
-## How a study session works
+## Key features
 
-1. **Share your lecture.** Attach a readable lecture PDF in ChatGPT or paste an excerpt you have permission to share.
-2. **Get a study plan.** See how the lecture is organised, which concepts come first, and what background knowledge you may need.
-3. **Follow the source.** Work through definitions, formulas and examples in order. Ask for page references and check important details against the lecture.
-4. **Practise independently.** Try one question at a time. Ask for a hint if you get stuck, then use the feedback to decide what to review.
-5. **Pick up where you left off.** Save a short checkpoint with the lecture, page and next topic. Paste it when you return and reattach the material if needed.
+- **Lecture intelligence:** Invoke the tutor with readable lecture files to map lectures and courses, identify prerequisites, sequence topics and follow source references. Track pages and elements, distinguishing inspected, explained and unreadable content.
+- **Adaptive learning:** Build difficulty progressively, request graduated hints, correct misconceptions and repair specific weaknesses. Keep independent performance separate from skipped or revealed answers.
+- **Multilingual education:** Learn in your preferred language, with source-grounded study notes in the lecture language, contextual academic vocabulary and explanations of formulas and terminology. Distinguish subject knowledge from language proficiency.
+- **Academic verification:** Follow derivations and proofs step by step. Separate source material, generated examples and externally verified information. Where host execution is available, bounded helpers can check question structure, state consistency and exact rational or polynomial calculations. They do not independently verify every answer.
+- **Interactive practice:** Use study cards, mathematical visualisations, concept maps, diagrams, guided navigation, flashcard-style practice, quizzes and exercises where supported. Text alternatives remain available.
+- **Exam preparation:** Practise lecture-specific and cumulative assessments with corrective feedback, progressive hints and targeted review. Distinguish recall, application, reasoning and transfer; answer independently before revealing a solution.
+- **Multiple lectures and courses:** Organise a single lecture or a complete course, connect related concepts across lectures and keep track of cumulative progress.
+- **Portable continuity:** Save your own checkpoint, restore it in a new conversation and reattach relevant lecture files. Automatic cloud synchronisation, permanent memory and background saving are not promised.
 
-An optional calculator counts distinct covered pages and identifies the first uncovered page. Use the count to track material you have worked through and practice questions to check what you can recall and apply. AI can make mistakes, especially with scanned pages, formulas and page references.
+## Academic disciplines
 
-## Availability, privacy and support
+23 subject-specific profiles and a general fallback: Mathematics; Computer science; Engineering; Physics and astronomy; Chemistry; Biology; Medicine, dentistry and nursing; Pharmacy; Law; Economics; Business administration; Accounting and finance; Psychology; Social and political sciences; History and archaeology; Philosophy and logic; Languages and translation; Literature and cultural studies; Architecture and design; Arts and music; Earth, environmental and agricultural sciences; Statistics and research methodology; Education; General and interdisciplinary studies. These are teaching approaches, not accredited programmes.
 
-The application is in review for the ChatGPT App Directory. The official website offers an interactive sample lesson in English, German and Arabic. [Official website and sample lesson](https://0-mkdad.github.io/uni-lecture-tutor-website/)
+## Learning science
 
-Lecture files and prompts are shared in ChatGPT and processed by OpenAI under the applicable policies and your account or workspace settings. The optional coverage calculator receives numeric page inputs and technical request data. [Privacy notice](https://0-mkdad.github.io/uni-lecture-tutor-website/privacy.html)
+Retrieval practice, Active recall, Spaced repetition, Successive relearning, Worked examples, Scaffolding and fading, Self-explanation, Interleaving, Cognitive load management, Knowledge transfer, Discipline-specific pedagogy inform the design. These publications inform individual learning strategies, not the demonstrated effectiveness of Uni Lecture Tutor itself. Results depend on task, context and learner; no academic outcome is guaranteed.
 
-Uni Lecture Tutor is published by Mohammad Almekdad, an independent full-stack and mobile developer based in Germany. [Developer website](https://mkdad.de/)
+## Free use and privacy
 
-For help with lecture files, checkpoints or the coverage calculator, see the [support page](https://0-mkdad.github.io/uni-lecture-tutor-website/support.html) or [email the publisher](mailto:info@mkdad.de).
+The publisher charges no separate tutor fee and requires no additional account. Access remains subject to ChatGPT availability, plan requirements, platform terms, region, workspace settings and usage limits. OpenAI may charge for its services. Public directory availability should be checked in ChatGPT.
+
+Lecture files and conversations are processed in ChatGPT under applicable OpenAI policies and your settings. The publisher operates no separate student-progress database. The optional coverage calculator is designed to receive only numerical page information (total_pages and covered_pages), not lecture text, filenames, account identifiers, assessment answers or checkpoints. GitHub and Cloudflare may process technical connection data needed to deliver and secure their services. Coverage is not mastery. Verify important material and follow institutional rules.
+
+## Official website and support
+
+- [Official website](https://0-mkdad.github.io/uni-lecture-tutor-website/)
+- [Deutsch](https://0-mkdad.github.io/uni-lecture-tutor-website/de/) · [العربية](https://0-mkdad.github.io/uni-lecture-tutor-website/ar/)
+- [Support](https://0-mkdad.github.io/uni-lecture-tutor-website/support.html) · [Email](mailto:info@mkdad.de)
+- [Privacy](https://0-mkdad.github.io/uni-lecture-tutor-website/privacy.html) · [Terms](https://0-mkdad.github.io/uni-lecture-tutor-website/terms.html) · [Impressum](https://0-mkdad.github.io/uni-lecture-tutor-website/legal.html)
+
+Independent project by [Mohammad Almekdad](https://mkdad.de/).
