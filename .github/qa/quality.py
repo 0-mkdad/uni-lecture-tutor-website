@@ -153,8 +153,16 @@ def run():
         if filename == "index.html":
             check(page.class_count("discipline-icon") == 24, f"{path}: expected 24 profiles")
             check(page.class_count("demo-extras") == 1, f"{path}: missing demo overview")
+            for anchor in ("study-modes", "languages-learning", "source-integrity", "learning-progress", "exports"):
+                check(anchor in page.ids, f"{path}: missing capability section {anchor}")
+            check(page.class_count("export-card") == 8, f"{path}: expected eight export types")
+            check(page.class_count("provenance-card") == 5, f"{path}: expected five provenance labels")
+            check(page.class_count("discipline-text") == 24, f"{path}: expected 24 discipline explanations")
+            check(page.class_count("language-example") == 1, f"{path}: missing multilingual example")
             check("1.0.0" in source, f"{path}: missing public version")
             COUNTS["profiles"] += page.class_count("discipline-icon")
+        if filename == "privacy.html":
+            check("public-research" in page.ids, f"{path}: missing public research notice")
         if filename == "learning-science.html":
             check(page.class_count("upgrade-card") == 11, f"{path}: expected 11 strategies")
             COUNTS["strategies"] += page.class_count("upgrade-card")

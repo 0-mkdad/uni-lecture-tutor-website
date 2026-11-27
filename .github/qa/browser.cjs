@@ -52,6 +52,10 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
             if (item === "") {
               assert.equal(await page.locator(".discipline-icon").count(), 24);
               assert.equal(await page.locator(".demo-extras li").count(), 4);
+              assert.equal(await page.locator(".export-card").count(), 8);
+              assert.equal(await page.locator(".provenance-card").count(), 5);
+              assert.equal(await page.locator(".discipline-text").count(), 24);
+              assert.equal(await page.locator(".language-choices > div").count(), 3);
               const geometry = await page.evaluate(() => {
                 const rect = el => el.getBoundingClientRect();
                 const css = el => getComputedStyle(el);
