@@ -459,3 +459,7 @@ summary { cursor: pointer; }
 /* Support uses a wider reading measure within the shared site shell. */
 .support-page > article { max-inline-size: 64rem; }
 .support-page .document-heading > p { max-inline-size: 80ch; }
+
+/* Match the support page reading width without affecting legal or science pages. */
+.getting-started-page > article { max-inline-size: 64rem; }
+.getting-started-page .document-heading > p { max-inline-size: 80ch; }
