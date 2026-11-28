@@ -33,6 +33,27 @@ jobs:
           grep -Eo '(pyo3|archery|triomphe|rpds)-[0-9]+\.[0-9]+\.[0-9]+' qualification/native-strings.txt | sort -u | tee qualification/native-versions.txt
       - name: OSV query for Python and upstream Rust lock
         run: .qualify/bin/python qa-dependencies/scan.py
+      - name: Verify bytes and embedded SBOMs for every approved wheel
+        run: .qualify/bin/python qa-dependencies/all_wheels.py
+      - name: Independent Python advisory audit
+        run: |
+          python -m venv .audit
+          .audit/bin/python -m pip --isolated install --index-url https://pypi.org/simple pip-audit==2.10.1
+          .audit/bin/pip-audit --version | tee qualification/pip-audit-version.txt
+          grep '==' qa-dependencies/requirements.txt | cut -d' ' -f1 > qualification/python-pins.txt
+          .audit/bin/pip-audit --strict --no-deps --disable-pip --vulnerability-service pypi -r qualification/python-pins.txt --format json --output qualification/pip-audit.json
+      - name: Independent RustSec audit
+        run: |
+          curl --fail --silent --show-error --location 'https://github.com/rustsec/rustsec/releases/download/cargo-audit/v0.23.0/cargo-audit-x86_64-unknown-linux-gnu-v0.23.0.tgz' -o cargo-audit.tgz
+          echo 'b77993532b253fcbf550996d7716465ec3d734d4e74e7f87bfb65a19add0fb59  cargo-audit.tgz' | sha256sum --check
+          mkdir -p .rust-audit
+          tar -xzf cargo-audit.tgz -C .rust-audit
+          AUDIT="$(find .rust-audit -type f -name cargo-audit | head -n 1)"
+          test -n "$AUDIT"
+          "$AUDIT" audit --version | tee qualification/cargo-audit-version.txt
+          git clone --depth 1 https://github.com/RustSec/advisory-db.git .rustsec-db
+          git -C .rustsec-db log -1 --format='%H %cI' > qualification/rustsec-db-revision.txt
+          "$AUDIT" audit --file qualification/rpds-Cargo.lock --db .rustsec-db --no-fetch --json > qualification/cargo-audit.json
       - name: Upload public dependency evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
