@@ -1,0 +1,24 @@
+name: ULT live MCP qualification
+on:
+  push:
+    branches: [qa/dependency-qualification-1.1.0]
+    paths:
+      - 'qa-dependencies/mcp_smoke.py'
+      - '.github/workflows/ult-mcp-qualification.yml'
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - run: python3 qa-dependencies/mcp_smoke.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mcp-smoke
+          path: mcp-smoke.json
+          retention-days: 7
+          if-no-files-found: error
