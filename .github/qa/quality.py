@@ -161,6 +161,8 @@ def run():
             check(page.class_count("language-example") == 1, f"{path}: missing multilingual example")
             check("1.0.0" in source, f"{path}: missing public version")
             COUNTS["profiles"] += page.class_count("discipline-icon")
+        if filename == "support.html":
+            check(page.class_count("support-page") == 1, f"{path}: missing wider support layout")
         if filename == "privacy.html":
             check("public-research" in page.ids, f"{path}: missing public research notice")
         if filename == "learning-science.html":

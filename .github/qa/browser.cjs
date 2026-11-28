@@ -34,7 +34,7 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
         if (r.status() >= 400) runtime.push("HTTP " + r.status() + ": " + r.url());
       });
       for (const lang of langs) {
-        for (const item of profile.homeOnly ? ["", "learning-science.html"] : pages) {
+        for (const item of profile.homeOnly ? ["", "learning-science.html", "support.html"] : pages) {
           const label = profile.name + "/" + lang + "/" + (item || "home");
           try {
             runtime.length = 0;
@@ -121,6 +121,15 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
                 const expected = (await page.locator(".prompt-list blockquote > p").first().textContent()).trim();
                 assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected);
               }
+            } else if (item === "support.html") {
+              const supportLayout = await page.evaluate(() => {
+                const main = document.querySelector(".support-page");
+                const article = main.querySelector(":scope > article");
+                const expected = Math.min(main.getBoundingClientRect().width, 64 * parseFloat(getComputedStyle(document.documentElement).fontSize));
+                return {width: article.getBoundingClientRect().width, expected};
+              });
+              assert.ok(Math.abs(supportLayout.width - supportLayout.expected) <= 1, "support page width differs from intended layout");
+              await page.screenshot({path: path.join(ARTIFACTS, "support-" + lang + "-" + profile.name + ".png"), fullPage: true, animations: "disabled"});
             } else if (item === "learning-science.html") {
               assert.equal(await page.locator(".upgrade-science > .upgrade-card").count(), 11);
               assert.equal(await page.locator(".upgrade-science .research-groups").count(), 0);

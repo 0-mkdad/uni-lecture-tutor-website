@@ -455,3 +455,7 @@ summary { cursor: pointer; }
 .science-page .research-groups { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
 .science-page .research-group { align-content: start; }
 .science-page > article > section > .research-list { max-inline-size: 90ch; }
+
+/* Support uses a wider reading measure within the shared site shell. */
+.support-page > article { max-inline-size: 64rem; }
+.support-page .document-heading > p { max-inline-size: 80ch; }
