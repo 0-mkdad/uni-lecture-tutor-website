@@ -447,6 +447,18 @@ summary { cursor: pointer; }
 .example-answer summary { color: var(--accent); font-weight: 650; min-block-size: 2.75rem; padding-block: var(--space-2); }
 .example-answer[open] p { padding-block-start: var(--space-2); }
 
+/* Learning science uses the shared site shell, with readable prose and compact cards. */
+.science-page > article { max-inline-size: none; }
+.science-page > article > p, .science-page .document-heading > p,
+.science-page > article > section > p { max-inline-size: 76ch; }
+.science-page .upgrade-science { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.science-page .research-groups { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.science-page .research-group { align-content: start; }
+.science-page > article > section > .research-list { max-inline-size: 90ch; }
+
+/* Support uses a wider reading measure within the shared site shell. */
+.support-page > article { max-inline-size: 64rem; }
+.support-page .document-heading > p { max-inline-size: 80ch; }
 
 /* Past exam intelligence: progressive disclosure, readable evidence, local styling. */
 .exam-section { border-block: 1px solid var(--line); background: var(--section); }
