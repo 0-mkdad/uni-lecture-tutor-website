@@ -58,10 +58,12 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
               const flowLayout = await page.locator(".learning-flow").evaluate(el => {
                 const r = el.getBoundingClientRect();
                 const cards = [...el.children].map(c => c.getBoundingClientRect());
-                return {contained: cards.every(c => c.left >= r.left - 1 && c.right <= r.right + 1), stacked: Math.abs(cards[0].top - cards[1].top) > 1};
+                return {contained: cards.every(c => c.left >= r.left - 1 && c.right <= r.right + 1), stacked: Math.abs(cards[0].top - cards[1].top) > 1, equalHeight: Math.abs(cards[0].height - cards[1].height) <= 1, equalWidth: Math.abs(cards[0].width - cards[1].width) <= 1};
               });
               assert.ok(flowLayout.contained, "learning flow overflow");
               assert.equal(flowLayout.stacked, profile.viewport.width <= 688, "learning flow responsive layout");
+              assert.ok(flowLayout.equalWidth, "learning flow cards must have equal width");
+              if (!flowLayout.stacked) assert.ok(flowLayout.equalHeight, "side-by-side learning flow cards must have equal height");
               assert.equal(await page.locator(".demo-extras li").count(), 4);
               assert.equal(await page.locator(".export-card").count(), 8);
               assert.equal(await page.locator(".provenance-card").count(), 5);

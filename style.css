@@ -466,7 +466,7 @@ summary { cursor: pointer; }
 
 
 /* Two original study journeys, using the shared palette and logical RTL geometry. */
-.learning-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); align-items: start; }
+.learning-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); align-items: stretch; }
 .flow-track { min-inline-size: 0; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-lg); padding: var(--card-space); box-shadow: var(--shadow); }
 .flow-track-head { display: grid; gap: var(--space-2); padding-block-end: var(--space-4); border-block-end: 1px solid var(--line); }
 .flow-track-head h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
