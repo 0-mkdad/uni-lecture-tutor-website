@@ -484,3 +484,7 @@ summary { cursor: pointer; }
 .exam-footer { margin-block-start: 1.5rem; }
 .exam-note { padding-block: 1.5rem; border-block-start: 1px solid var(--line); }
 @media (max-width: 760px) { .exam-split { grid-template-columns: minmax(0, 1fr); } }
+
+/* Match the support page reading width without affecting legal or science pages. */
+.getting-started-page > article { max-inline-size: 64rem; }
+.getting-started-page .document-heading > p { max-inline-size: 80ch; }

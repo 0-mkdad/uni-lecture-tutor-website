@@ -34,7 +34,7 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
         if (r.status() >= 400) runtime.push("HTTP " + r.status() + ": " + r.url());
       });
       for (const lang of langs) {
-        for (const item of profile.homeOnly ? ["", "learning-science.html", "support.html"] : pages) {
+        for (const item of profile.homeOnly ? ["", "learning-science.html", "support.html", "getting-started.html"] : pages) {
           const label = profile.name + "/" + lang + "/" + (item || "home");
           try {
             runtime.length = 0;
@@ -114,6 +114,14 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
               await page.evaluate(() => window.scrollTo(0, 0));
               await page.screenshot({path: path.join(ARTIFACTS, lang + "-" + profile.name + ".png"), fullPage: true, animations: "disabled"});
             } else if (item === "getting-started.html") {
+              const guideLayout = await page.evaluate(() => {
+                const main = document.querySelector(".getting-started-page");
+                const article = main.querySelector(":scope > article");
+                const expected = Math.min(main.getBoundingClientRect().width, 64 * parseFloat(getComputedStyle(document.documentElement).fontSize));
+                return {width: article.getBoundingClientRect().width, expected};
+              });
+              assert.ok(Math.abs(guideLayout.width - guideLayout.expected) <= 1, "getting-started page width differs from intended layout");
+              await page.screenshot({path: path.join(ARTIFACTS, "guide-" + lang + "-" + profile.name + ".png"), fullPage: true, animations: "disabled"});
               assert.equal(await page.locator(".guide-steps > li").count(), 5);
               assert.equal(await page.locator(".prompt-list blockquote").count(), 3);
               if (await page.locator(".copy-prompt").count()) {

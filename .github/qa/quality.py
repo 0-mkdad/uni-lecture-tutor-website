@@ -176,6 +176,7 @@ def run():
             check(page.class_count("science-page") == 1, f"{path}: missing shared-width science layout")
             COUNTS["strategies"] += page.class_count("upgrade-card")
         if filename == "getting-started.html":
+            check(page.class_count("getting-started-page") == 1, f"{path}: missing wider guide layout")
             check(page.class_count("guide-steps") == 1, f"{path}: missing guide")
             check(sum(t == "blockquote" for t, _ in page.tags) == 3, f"{path}: expected three prompts")
     check(len({parsed[p].title for p in expected}) == len(expected), "duplicate page titles")
