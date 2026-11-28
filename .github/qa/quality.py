@@ -159,7 +159,10 @@ def run():
             check(page.class_count("provenance-card") == 5, f"{path}: expected five provenance labels")
             check(page.class_count("discipline-text") == 24, f"{path}: expected 24 discipline explanations")
             check(page.class_count("language-example") == 1, f"{path}: missing multilingual example")
-            check("1.0.0" in source, f"{path}: missing public version")
+            check("1.1.0" in source, f"{path}: missing development version")
+            check("past-exams" in page.ids, f"{path}: missing past-exam section")
+            check(page.class_count("exam-step") == 4, f"{path}: missing guided exam demo")
+            check(page.class_count("exam-modes") == 1, f"{path}: missing exam study modes")
             COUNTS["profiles"] += page.class_count("discipline-icon")
         if filename == "privacy.html":
             check("public-research" in page.ids, f"{path}: missing public research notice")

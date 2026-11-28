@@ -446,3 +446,29 @@ summary { cursor: pointer; }
 .example-answer { align-self: stretch; margin-block-start: auto; }
 .example-answer summary { color: var(--accent); font-weight: 650; min-block-size: 2.75rem; padding-block: var(--space-2); }
 .example-answer[open] p { padding-block-start: var(--space-2); }
+
+
+/* Past exam intelligence: progressive disclosure, readable evidence, local styling. */
+.exam-section { border-block: 1px solid var(--line); background: var(--section); }
+.exam-lead { max-inline-size: 68ch; margin-block: 1rem 2rem; color: var(--muted); font-size: 1.08rem; }
+.exam-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: var(--space-4); align-items: start; }
+.exam-evidence { min-inline-size: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--card-space); box-shadow: var(--shadow); }
+.exam-evidence h3, .exam-subheading { font-size: clamp(1.2rem, 2vw, 1.55rem); }
+.exam-caption { font-size: .88rem; color: var(--muted); margin-block: .65rem; }
+.exam-table-wrap { overflow-x: auto; margin-block: 1rem; }
+.exam-table { border-collapse: collapse; inline-size: 100%; font-size: .88rem; }
+.exam-table th, .exam-table td { padding: .65rem; border-block-end: 1px solid var(--line); text-align: start; vertical-align: top; overflow-wrap: anywhere; }
+.exam-table thead th { background: var(--wash); }
+.exam-question { padding: 1rem; background: var(--wash); border-radius: var(--radius-sm); margin-block: 1rem; font-weight: 600; }
+.exam-step { border-block-start: 1px solid var(--line); padding-block: .8rem; }
+.exam-step summary { cursor: pointer; font-weight: 650; color: var(--accent); }
+.exam-step p { margin-block-start: .65rem; padding-inline-start: 1rem; }
+.exam-step-number { display: inline-block; font-variant-numeric: tabular-nums; color: var(--muted); margin-inline-end: .6rem; font-size: .84rem; }
+.exam-subheading { margin-block: 2rem 1rem; }
+.exam-modes, .exam-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--space-3); }
+.exam-modes article, .exam-feature-grid article { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--card-space); }
+.exam-modes h4, .exam-feature-grid h4 { margin-block: .25rem .6rem; font-size: 1rem; color: var(--ink); }
+.exam-modes p, .exam-feature-grid p { color: var(--muted); font-size: .92rem; }
+.exam-footer { margin-block-start: 1.5rem; }
+.exam-note { padding-block: 1.5rem; border-block-start: 1px solid var(--line); }
+@media (max-width: 760px) { .exam-split { grid-template-columns: minmax(0, 1fr); } }

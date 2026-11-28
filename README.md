@@ -4,6 +4,10 @@
 
 Uni Lecture Tutor (public product version **1.0.0**) is an independent, multilingual university learning assistant designed for ChatGPT. Turn readable lectures into structured study sessions, build understanding, practise independently and prepare for exams.
 
+## Development preview: 1.1.0
+
+Past Exam Intelligence extends the lecture workflow with single- and multi-paper analysis, source-linked question families, recurrence, descriptive exam style, paper/page/question and family navigation, guided solving, parallel examples, first-error feedback, independent mock exams, adaptive transfer training and a portable exam ledger. Historical frequencies are not predictions; host acceptance and release approval remain pending. The current public 1.0.0 availability remains unchanged.
+
 ## Key features
 
 - **Lecture intelligence:** Invoke the tutor and submit accessible lecture files; no written launch prompt is required. The workflow is designed to map lectures and begin the first supported objective in the same response. Identify prerequisites, sequence topics and follow source references. Track pages and elements, distinguishing inspected, explained and unreadable content.
