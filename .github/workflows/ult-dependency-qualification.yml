@@ -1,0 +1,43 @@
+name: ULT dependency qualification
+on:
+  push:
+    branches: [qa/dependency-qualification-1.1.0]
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13'
+      - name: Hash-locked wheels and isolated install
+        run: |
+          mkdir -p qualification/wheelhouse
+          python -m pip --isolated download --index-url https://pypi.org/simple --require-hashes --only-binary=:all: -r qa-dependencies/requirements.txt -d qualification/wheelhouse
+          sha256sum qualification/wheelhouse/* | tee qualification/wheel-hashes.txt
+          python -m venv .qualify
+          .qualify/bin/python -m pip --isolated install --no-index --find-links qualification/wheelhouse --require-hashes --only-binary=:all: -r qa-dependencies/requirements.txt
+          .qualify/bin/python -m pip check
+          .qualify/bin/python -m pip list --format=json > qualification/installed.json
+          .qualify/bin/python -c 'from rpds import HashTrieMap; from jsonschema import Draft202012Validator; assert HashTrieMap({"ok":1})["ok"]==1; Draft202012Validator({"type":"integer"}).validate(1)'
+      - name: Inspect native binary
+        run: |
+          set -o pipefail
+          find .qualify -path '*/rpds/*.so' -exec sha256sum {} \; > qualification/native-sha256.txt
+          find .qualify -path '*/rpds/*.so' -exec strings {} \; > qualification/native-strings.txt
+          grep -Eo '(pyo3|archery|triomphe|rpds)-[0-9]+\.[0-9]+\.[0-9]+' qualification/native-strings.txt | sort -u | tee qualification/native-versions.txt
+      - name: OSV query for Python and upstream Rust lock
+        run: .qualify/bin/python qa-dependencies/scan.py
+      - name: Upload public dependency evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: dependency-qualification
+          path: qualification/
+          retention-days: 7
+          if-no-files-found: error
