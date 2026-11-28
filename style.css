@@ -463,3 +463,25 @@ summary { cursor: pointer; }
 /* Match the support page reading width without affecting legal or science pages. */
 .getting-started-page > article { max-inline-size: 64rem; }
 .getting-started-page .document-heading > p { max-inline-size: 80ch; }
+
+
+/* Two original study journeys, using the shared palette and logical RTL geometry. */
+.learning-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); align-items: start; }
+.flow-track { min-inline-size: 0; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-lg); padding: var(--card-space); box-shadow: var(--shadow); }
+.flow-track-head { display: grid; gap: var(--space-2); padding-block-end: var(--space-4); border-block-end: 1px solid var(--line); }
+.flow-track-head h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+.flow-track-label { color: var(--accent); font-size: .79rem; font-weight: 700; }
+.flow-exam .flow-track-label { color: var(--muted); }
+.flow-rail { list-style: none; padding: 0; margin: var(--space-5) 0 0; display: grid; }
+.flow-rail > li { position: relative; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--space-3); padding-block-end: var(--space-5); min-inline-size: 0; }
+.flow-rail > li:last-child { padding-block-end: 0; }
+.flow-rail > li:not(:last-child)::before { content: ""; position: absolute; inset-inline-start: .96rem; inset-block-start: 2rem; inset-block-end: 0; border-inline-start: 1px solid var(--line-strong); }
+.flow-number { position: relative; display: grid; place-items: center; inline-size: 2rem; block-size: 2rem; background: var(--wash); color: var(--accent); font-size: .78rem; font-weight: 750; font-variant-numeric: tabular-nums; border-radius: var(--radius-sm); }
+.flow-rail h4 { font-size: 1rem; line-height: 1.4; margin: 0 0 var(--space-1); overflow-wrap: anywhere; }
+.flow-rail p { color: var(--muted); font-size: .91rem; line-height: 1.6; overflow-wrap: anywhere; }
+.flow-source { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-block-start: var(--space-5); padding: var(--card-space); border: 1px solid var(--line); border-inline-start: 3px solid var(--accent); background: var(--surface); border-radius: var(--radius-md); }
+.flow-source > div { flex: 1 1 28rem; min-inline-size: 0; }
+.flow-source h3 { font-size: 1.05rem; margin-block-end: var(--space-1); }
+.flow-source p, .flow-status { color: var(--muted); font-size: .88rem; line-height: 1.65; }
+.flow-status { margin-block-start: var(--space-3); max-inline-size: 85ch; }
+@media (max-width: 43rem) { .learning-flow { grid-template-columns: minmax(0, 1fr); } }

@@ -152,6 +152,9 @@ def run():
         check(page.meta.get("twitter:card") == "summary_large_image", f"{path}: social card type")
         if filename == "index.html":
             check(page.class_count("discipline-icon") == 24, f"{path}: expected 24 profiles")
+            check(page.class_count("flow-track") == 2, f"{path}: expected two learning paths")
+            check(page.class_count("flow-number") == 12, f"{path}: expected twelve learning steps")
+            check(page.class_count("flow-status") == 1, f"{path}: missing release preview notice")
             check(page.class_count("demo-extras") == 1, f"{path}: missing demo overview")
             for anchor in ("study-modes", "languages-learning", "source-integrity", "learning-progress", "exports"):
                 check(anchor in page.ids, f"{path}: missing capability section {anchor}")

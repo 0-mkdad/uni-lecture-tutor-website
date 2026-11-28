@@ -51,6 +51,17 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
             assert.equal(violations.length, 0, "axe: " + JSON.stringify(violations));
             if (item === "") {
               assert.equal(await page.locator(".discipline-icon").count(), 24);
+              assert.equal(await page.locator("#workflow .flow-track").count(), 2);
+              assert.equal(await page.locator("#workflow .flow-lecture .flow-rail > li").count(), 6);
+              assert.equal(await page.locator("#workflow .flow-exam .flow-rail > li").count(), 6);
+              assert.ok(await page.locator("#workflow .flow-status").isVisible());
+              const flowLayout = await page.locator(".learning-flow").evaluate(el => {
+                const r = el.getBoundingClientRect();
+                const cards = [...el.children].map(c => c.getBoundingClientRect());
+                return {contained: cards.every(c => c.left >= r.left - 1 && c.right <= r.right + 1), stacked: Math.abs(cards[0].top - cards[1].top) > 1};
+              });
+              assert.ok(flowLayout.contained, "learning flow overflow");
+              assert.equal(flowLayout.stacked, profile.viewport.width <= 688, "learning flow responsive layout");
               assert.equal(await page.locator(".demo-extras li").count(), 4);
               assert.equal(await page.locator(".export-card").count(), 8);
               assert.equal(await page.locator(".provenance-card").count(), 5);
