@@ -167,9 +167,9 @@ def run():
             check("public-research" in page.ids, f"{path}: missing public research notice")
         if filename == "learning-science.html":
             check(page.class_count("upgrade-card") == 11, f"{path}: expected 11 strategies")
-            cards = re.findall(r\'<article class="upgrade-card">(.*?)</article>\', source, re.S)
-            check(len(cards) == 11 and all(not re.search(r"<(?:section|div)\\b", card) for card in cards), f"{path}: research content nested inside a strategy card")
-            check(bool(re.search(r\'</article></div>\\s*<section class="research-foundations">\', source)), f"{path}: foundations must follow the strategy grid")
+            cards = re.findall(r'<article class="upgrade-card">(.*?)</article>', source, re.S)
+            check(len(cards) == 11 and all(not re.search(r"<(?:section|div)\b", card) for card in cards), f"{path}: research content nested inside a strategy card")
+            check(bool(re.search(r'</article></div>\s*<section class="research-foundations">', source)), f"{path}: foundations must follow the strategy grid")
             check(page.class_count("science-page") == 1, f"{path}: missing shared-width science layout")
             COUNTS["strategies"] += page.class_count("upgrade-card")
         if filename == "getting-started.html":
