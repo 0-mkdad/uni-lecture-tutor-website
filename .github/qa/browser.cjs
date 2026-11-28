@@ -34,7 +34,7 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
         if (r.status() >= 400) runtime.push("HTTP " + r.status() + ": " + r.url());
       });
       for (const lang of langs) {
-        for (const item of profile.homeOnly ? [""] : pages) {
+        for (const item of profile.homeOnly ? ["", "learning-science.html"] : pages) {
           const label = profile.name + "/" + lang + "/" + (item || "home");
           try {
             runtime.length = 0;
@@ -122,7 +122,20 @@ const prefix = lang => lang === "en" ? "" : lang + "/";
                 assert.equal(await page.evaluate(() => navigator.clipboard.readText()), expected);
               }
             } else if (item === "learning-science.html") {
-              assert.equal(await page.locator(".upgrade-science .upgrade-card").count(), 11);
+              assert.equal(await page.locator(".upgrade-science > .upgrade-card").count(), 11);
+              assert.equal(await page.locator(".upgrade-science .research-groups").count(), 0);
+              assert.equal(await page.locator(".science-page > article > .research-foundations .research-group").count(), 6);
+              const scienceLayout = await page.evaluate(() => {
+                const main = document.querySelector(".science-page");
+                const article = main.querySelector(":scope > article");
+                const grid = article.querySelector(".upgrade-science");
+                const foundations = article.querySelector(".research-foundations");
+                const rect = el => el.getBoundingClientRect();
+                return {widthDifference: Math.abs(rect(main).width - rect(article).width), gridDifference: Math.abs(rect(article).width - rect(grid).width), afterGrid: rect(foundations).top >= rect(grid).bottom, maxCardHeight: Math.max(...[...grid.children].map(el => rect(el).height))};
+              });
+              assert.ok(scienceLayout.widthDifference <= 1 && scienceLayout.gridDifference <= 1, "science grid must use shared shell width");
+              assert.ok(scienceLayout.afterGrid && scienceLayout.maxCardHeight < 320, "oversized science card or misplaced research section");
+              await page.screenshot({path: path.join(ARTIFACTS, "science-" + lang + "-" + profile.name + ".png"), fullPage: true, animations: "disabled"});
             }
             assert.deepEqual(runtime, []);
             checked++;
